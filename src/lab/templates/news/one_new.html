@@ -1,0 +1,39 @@
+{% extends 'base.html' %} <!-- подключаем базовый шаблон -->
+<!-- отображать название поста как title страницы-->
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+      {% if post.image %}
+    <img src='{{ post.image.url }}' class='img-responsive' />
+    {% endif %}
+    Дата: {{ timestamp }}
+    Автор: {{ author }}
+    <h1>{{ title }}</h1>
+    <div class='col-md-6 col-sm-offset-3'>
+
+<h1>{{ title }} <small>{{ post.timestamp }}</small></h1>
+
+{{ post.content|linebreaks }}<br/>
+<div class="prev-next-post">
+  {% if post.get_previous_by_timestamp %}
+  <div class="prev-post">
+      <a href="{{ post.get_previous_by_timestamp.id }}">
+          << {{ post.get_previous_by_timestamp.title }}
+      </a>
+
+  </div>
+  {% endif %}
+  {% if post.get_nexy_by_timestamp %}
+  <div class="next-post">
+      <a href="{{ post.get_next_by_timestamp.id }}">
+           {{ post.get_next_timestamp.title }} >>
+      </a>
+
+  </div>
+  {% endif %}
+</div>
+    </div>
+
+<div>{{ body|safe|escape}}</div> <!-- экранировать HTML-->
+<!-- escape переводит HTML-теги, если вы использовали их
+    при написании статьи в админке -->
+{% endblock %}

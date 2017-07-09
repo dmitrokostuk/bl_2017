@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}News{% endblock %}
+{% block content %}
+    {% for obj in object_list %}
+    {{ obj.region }}
+   {% endfor %}
+<div class="col-md-6 col-md-offset-3" xmlns="http://www.w3.org/1999/html">
+   <h1>{{ title }}</h1>
+ {% for obj in object_list %}
+ <div class="row">
+    <div class="col-md-12">
+      <div class="thumbnail">
+        {% if obj.image %}
+          <img src="{{ obj.image.url }}" class="img-responsive">
+        {% endif %}
+       <div class="caption">
+        <h3><a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a> <small>{{ obj.timestamp|timesince }} ago</small></h3>
+        <p> {{ obj.content|linebreaks|truncatechars:120 }} </p>
+        <p><a href="{{ obj.get_absolute_url }}" class="btn btn-primary" role="button">read modre</a></p>
+      </div>
+      </div>
+    </div>
+ <hr/>
+ </div>
+
+
+ {% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+            <button id="firstname"><a href="?{{ page_request_var }}={{ object_list.previous_page_number }}">previous</a></button>
+        {% endif %}
+
+        <span class="current">
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+        </span>
+
+        {% if object_list.has_next %}
+            <button id="button_prew_next"><a href="?{{ page_request_var }}={{ object_list.next_page_number }}">next</a></button>
+        {% endif %}
+    </span>
+</div>
+
+
+
+
+
+</div>
+
+
+{% endblock content %}

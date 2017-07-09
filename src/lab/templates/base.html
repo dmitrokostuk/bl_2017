@@ -1,0 +1,54 @@
+{% load staticfiles %}
+<!--DOCTYPE html -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block head_title %}Test travel {% endblock head_title %}</title>
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <!--Load scripts for ckeditor-->
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link rel='stylesheet' href='{% static "css/base.css" %}' />
+    <link rel='stylesheet' href='{% static "css/search-clas.css" %}' />
+
+
+<style>{% block style %}{% endblock style %}</style>
+    {% block meta %}
+      <!-- подключаем наш css-файл, если он есть -->
+      <link rel="stylesheet" type="text/css" href="{% static "css/base.css" %}" />
+    {% endblock %}
+<title>{% block title %}My Django Site{% endblock %}</title>
+</head>
+
+<body>
+{% block header %}
+    {% include "header.html" %} <!-- подключаем «шапку» сайта -->
+{% endblock %}
+
+
+{% include "messages_display.html" %}
+<div class='col-md-12' id="content">
+{% block content %}{% endblock content %}
+</div>
+
+{% block footer %} <!-- подключаем «подвал» сайта -->
+    {% include "footer.html" %}
+{% endblock %}
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Javascripts Section -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+
+
+</body>
+</html>

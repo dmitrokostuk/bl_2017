@@ -1,0 +1,8 @@
+sorl-thumbnail
+mptt
+redis
+Pillow
+pgmagick
+graphicsmagick
+django-ckeditor
+unidecode
